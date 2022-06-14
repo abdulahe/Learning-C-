@@ -258,3 +258,256 @@
 //     cout << "Obim trougla t1 = " << t1.O() << endl;
 //     return 0;
 // }
+
+/// classes in classes
+// Realizovati klase Prava i Kvadrat.
+//  Klasa Prava ima atribute x1,y1,x2,y2,d.
+//  Metode: Konstruktor sa i bez argumenata,
+//  set i get metode,
+//  metoda racunajDuzinu() i metodu ispis().
+//  Kvadrat ima atribute:Prava vrh,Prava dno
+//  Metode:Konstruktor sa i bez argumenata, povrsina(),obim() i ispis().
+
+// #include <math.h>
+// #include <iostream>
+// using namespace std;
+
+// class Prava
+// {
+//     int x1, y1, x2, y2;
+//     float d;
+
+// public:
+//     Prava();
+//     Prava(int x1, int x2, int y1, int y2);
+//     void set(int x1, int x2, int y1, int y2)
+//     {
+//         this->x1 = x1;
+//         this->x2 = x2;
+//         this->y1 = y1;
+//         this->y2 = y2;
+//         racunajDuzine();
+//     }
+//     int getX1() { return x1; }
+//     int getX2() { return x2; }
+//     int getY1() { return y1; }
+//     int getY2() { return y2; }
+//     int getd() { return d; }
+//     void racunajDuzine();
+//     void ispis();
+// };
+// class Kvadrat
+// {
+//     Prava vrh, dno;
+
+// public:
+//     int Povrsina();
+//     int Obim();
+//     void ispis();
+// };
+
+// Prava::Prava()
+// {
+//     cout << "Unesi tacku pocetka prave (x1,y1): ";
+//     cin >> x1 >> y1;
+//     cout << "Unesi tacku pocetka prave (x2,y2): ";
+//     cin >> x2 >> y2;
+//     racunajDuzine();
+// }
+// Prava::Prava(int x1, int x2, int y1, int y2)
+// {
+//     set(x1, x2, y1, y2);
+// }
+// void Prava::racunajDuzine()
+// {
+//     d = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
+// }
+// void Prava::ispis()
+// {
+//     cout << "Prava: [(" << x1 << ", " << y1 << "), (" << x1 << ", " << y1 << ")]" << endl;
+// }
+// int Kvadrat::Povrsina()
+// {
+//     return vrh.getd() * dno.getd();
+// }
+// int Kvadrat::Obim()
+// {
+//     return 2 * vrh.getd() + 2 * dno.getd();
+// }
+// void Kvadrat::ispis()
+// {
+//     cout << "Kvadrat:\n";
+//     cout << "[(" << vrh.getX1() << ", " << vrh.getY1() << "), "
+//          << "(" << vrh.getX2() << ", " << vrh.getY2() << ")]\n";
+//     cout << "[(" << dno.getX1() << ", " << dno.getY1() << "), "
+//          << "(" << dno.getX2() << ", " << dno.getY2() << ")]\n";
+// }
+
+// int main()
+// {
+//     Kvadrat k1;
+//     cout << "Povrsina datog kvadrata je: " << k1.Povrsina() << endl;
+//     cout << "Obim datog kvadrata je: " << k1.Obim() << endl;
+//     k1.ispis();
+//     return 0;
+// }
+
+// Realizovati klasu Ocena koja ima tri privatna atributa:
+// ime_predmeta, ocenu i datum.
+// Metode: Konstruktor sa i bez argumenata, metodu jeLiPolozio() koja vraca true ako je student polozio ispit i false ako nije.
+// Ispis() koja ispisuje podatke o oceni, set i get metode.
+// Klasa Student ima privatne atribute: imeIprezime, brIndeksa, ocena1, ocena2 i ocena3 ( objekti klase ocena). set i get metode.
+// int ukupnoPolozenih() - vraca broj polozenih ispita. float prosek() - vraca prosek studenta. ispis() - ispuje podatke o studentu i njegovim ocenama.
+
+// #include <iostream>
+// using namespace std;
+
+// class Ocena
+// {
+// private:
+//     string ime_predmeta;
+//     int ocena;
+//     string datum;
+
+// public:
+//     Ocena();
+//     Ocena(string ime_predmeta, int ocena, string datum);
+//     int jeLiPolozio() { return ocena > 5 && ocena <= 10 ? true : false; }
+//     void ispis();
+//     void setIme_Predmeta(string x) { ime_predmeta = x; }
+//     void setOcena(int x) { ocena = x; }
+//     void setDatum(string x) { datum = x; }
+//     string getIme_Predmeta() { return ime_predmeta; }
+//     int getOcena() { return ocena; }
+//     string getDatum() { return datum; }
+// };
+// Ocena::Ocena()
+// {
+//     ime_predmeta = "N/A";
+//     ocena = 0;
+//     datum = "N/A";
+// }
+// Ocena::Ocena(string ime_predmeta, int ocena, string datum)
+// {
+//     this->ime_predmeta = ime_predmeta;
+//     this->ocena = ocena;
+//     this->datum = datum;
+// }
+// void Ocena::ispis()
+// {
+//     cout << "ime predmeta: " << ime_predmeta << "\nOcena: " << ocena << "\nDatum: " << datum << endl;
+// }
+// class Student
+// {
+// private:
+//     string imeIPrezime, brIndeksa;
+//     Ocena ocena1, ocena2, ocena3;
+
+// public:
+//     void setImeIPrezime(string x) { imeIPrezime = x; }
+//     void setBrIndeksa(string x) { brIndeksa = x; }
+//     void setOcena1(string ime_predmeta, int ocena, string datum)
+//     {
+//         ocena1.setIme_Predmeta(ime_predmeta);
+//         ocena1.setDatum(datum);
+//         ocena1.setOcena(ocena);
+//     }
+//     void setOcena2(string ime_predmeta, int ocena, string datum)
+//     {
+//         ocena2.setIme_Predmeta(ime_predmeta);
+//         ocena2.setDatum(datum);
+//         ocena2.setOcena(ocena);
+//     }
+//     void setOcena3(string ime_predmeta, int ocena, string datum)
+//     {
+//         ocena3.setIme_Predmeta(ime_predmeta);
+//         ocena3.setDatum(datum);
+//         ocena3.setOcena(ocena);
+//     }
+//     string getImeIPrezime() { return imeIPrezime; }
+//     string getBrIndeksa() { return brIndeksa; }
+//     Ocena getOcena1() { return ocena1; }
+//     Ocena getOcena2() { return ocena2; }
+//     Ocena getOcena3() { return ocena3; }
+//     int ukupnoPolozenih();
+//     float prosek();
+//     void ispis();
+// };
+
+// int Student::ukupnoPolozenih()
+// {
+//     int brPolozenih = 0;
+//     ocena1.jeLiPolozio() ? brPolozenih++ : brPolozenih;
+//     ocena2.jeLiPolozio() ? brPolozenih++ : brPolozenih;
+//     ocena3.jeLiPolozio() ? brPolozenih++ : brPolozenih;
+//     return brPolozenih;
+// }
+
+// float Student::prosek()
+// {
+//     return (ocena1.getOcena() + ocena2.getOcena() + ocena3.getOcena()) / 3;
+// }
+
+// void Student::ispis()
+// {
+//     cout << "Ime i Prezime: " << imeIPrezime << "\nBr. Indeksa: " << brIndeksa << endl;
+//     ocena1.ispis();
+//     ocena2.ispis();
+//     ocena3.ispis();
+// }
+
+// int main()
+// {
+//     Student s1;
+//     s1.setImeIPrezime("Harun Eminovic");
+//     s1.setBrIndeksa("036062/22");
+//     s1.setOcena1("ORT", 7, "02.03.2022.");
+//     s1.setOcena2("OET", 9, "11.11.2021.");
+//     s1.setOcena3("Programiranje", 10, "15.05.2022.");
+//     s1.ispis();
+//     cout << "Prosek studenta: " << s1.prosek() << endl;
+//     return 0;
+// }
+
+// Klasa poklon ima cena, jedinstven automatski generisani celobrojni identifikator.
+//  Svi atributi su zaštićeni od pristupa (ne može im se pristupiti – znači da trebaju da budu private i da nemaju set i get metode).
+//  Metode: konstruktor sa argumentima, kopi konstruktor, ispis() koja ispisuje id poklona i cenu u formatu “id(cena)”.
+
+// #include <cmath>
+// #include <iostream>
+// using namespace std;
+
+// class Poklon
+// {
+//     int id;
+//     float cena;
+
+// public:
+//     static int posID;
+//     Poklon(float cena);
+//     Poklon(const Poklon &p);
+//     void ispis()
+//     {
+//         cout << id << "($" << ceil(cena * 100) / 100 << ")\n";
+//     }
+// };
+// Poklon::Poklon(float cena)
+// {
+//     this->cena = cena;
+//     id = ++posID;
+// }
+// Poklon::Poklon(const Poklon &p)
+// {
+//     this->cena = p.cena;
+//     id = ++posID;
+// }
+// int Poklon::posID = 0;
+// int main()
+// {
+//     Poklon poklon(55.3567), poklon2(poklon);
+//     poklon.ispis();
+//     poklon2.ispis();
+//     Poklon pok3(100);
+//     pok3.ispis();
+//     return 0;
+// }
