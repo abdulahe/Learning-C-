@@ -438,3 +438,162 @@
 //     student1.ispis();
 //     return 0;
 // }
+
+// Polymorphism
+// ex.
+// #include <iostream>
+// using namespace std;
+
+// // Base class
+// class Animal
+// {
+// public:
+//     virtual void animalSound()
+//     {
+//         cout << "The animal makes a sound \n";
+//     }
+// };
+
+// // Derived class
+// class Pig : public Animal
+// {
+// public:
+//     void animalSound()
+//     {
+//         cout << "The pig says: wee wee \n";
+//     }
+// };
+
+// // Derived class
+// class Dog : public Animal
+// {
+// public:
+//     void animalSound()
+//     {
+//         cout << "The dog says: bow wow \n";
+//     }
+// };
+
+// int main()
+// {
+//     Animal myAnimal, *bptr;
+//     Pig myPig;
+//     Dog myDog;
+//     bptr = &myPig;
+//     bptr->animalSound();
+//     myAnimal.animalSound();
+//     return 0;
+// }
+
+// Realizovati nasledjivanje Linearna->Kvadratna sa virtuelnim metodama resenje i ispis
+// Klasa Linarna(2x+3=0, resenja :1) x=-b/c za c?0 2) inace nema resenja )   sadrzi polja (b i c) .
+// Klasa Kvadratna(ax2+bx+c=0, resenja: 1) x1/2=(-b+/-sqrt(D))/2a , D>0,D=b2-4ac
+// 2) D<0 nema realnih resenja
+// 3) D=0 x=-b/2a
+// sadrzi dodatno polje a.
+// Napraviti odgovarajuce konstruktore sa i bez argumenata za obe klase ,destruktore i metodu  za ispis jednacine.Realizovati metodu resenje za obe jednacine tako da ispisuje poruku o resenju jednacine i vraca koliko resenja ima jednacina 0-nema resenja, 1-jedno resenje ,2-dva resenja.
+// Fomirati polimorfne metode:
+// A) ispis koja ispisuje jednacinu i njeno resenje
+// B) ima_resenja koja vraca tacno ako jednacina ima resenja netacno ako nema.
+// Testirati klasu u main f-ji.
+
+#include <math.h>
+#include <iostream>
+using namespace std;
+
+class Linearna
+{
+protected:
+    int b, c;
+
+public:
+    Linearna()
+    {
+        b = 2;
+        c = 3;
+    }
+    Linearna(int b, int c)
+    {
+        this->b = b;
+        this->c = c;
+    }
+    virtual int resenje()
+    {
+        float x = (float)-c / b;
+        if (x)
+        {
+            cout << "Resenje linearne jednacine:\nx = " << x << endl;
+            return 1;
+        }
+        else
+        {
+            cout << "Jednacina nema resenja!!" << endl;
+            return 0;
+        }
+    }
+    virtual void ispis()
+    {
+        cout << b << "x ";
+        if (c >= 0)
+            cout << "+";
+        cout << c << " = 0" << endl;
+    }
+};
+class Kvadratna : public Linearna
+{
+    int a;
+
+public:
+    Kvadratna()
+    {
+        a = 1;
+    }
+    Kvadratna(int a, int b, int c) : Linearna(b, c)
+    {
+        this->a = a;
+    }
+    int resenje()
+    {
+        float x1, x2, D;
+        D = b * b - 4 * a * c;
+        if (D > 0)
+        {
+            x1 = (float)(-b + sqrt(D)) / (2 * a);
+            x2 = (float)(-b - sqrt(D)) / (2 * a);
+            cout << "Resenja kvadratne jednacine:\nx1 = " << x1 << "\nx2 = " << x2 << endl;
+            return 2;
+        }
+        else if (D = 0)
+        {
+            x1 = (float)-b / (2 * a);
+            cout << "Resenje kvadratne jednacine:\nx = " << x1 << endl;
+            return 1;
+        }
+        else
+        {
+            cout << "Jednacina nema realnih resenja." << endl;
+            return 0;
+        }
+    }
+    void ispis()
+    {
+        cout << a << "x^2 ";
+        if (b > 0)
+            cout << "+";
+        cout << b << "x ";
+        if (b > 0)
+            cout << "+";
+        cout << c << " = 0" << endl;
+    }
+};
+
+int main()
+{
+    Linearna Ljed1(3, -4);
+    Kvadratna Kjed1(1, 7, 6);
+    Ljed1.ispis();
+    Ljed1.resenje();
+    Kjed1.ispis();
+    Kjed1.resenje();
+    return 0;
+}
