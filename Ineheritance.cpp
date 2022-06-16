@@ -497,103 +497,254 @@
 // B) ima_resenja koja vraca tacno ako jednacina ima resenja netacno ako nema.
 // Testirati klasu u main f-ji.
 
-#include <math.h>
-#include <iostream>
-using namespace std;
+// #include <math.h>
+// #include <iostream>
+// using namespace std;
 
-class Linearna
-{
-protected:
-    int b, c;
+// class Linearna
+// {
+// protected:
+//     float b, c;
 
-public:
-    Linearna()
-    {
-        b = 2;
-        c = 3;
-    }
-    Linearna(int b, int c)
-    {
-        this->b = b;
-        this->c = c;
-    }
-    virtual int resenje()
-    {
-        float x = (float)-c / b;
-        if (x)
-        {
-            cout << "Resenje linearne jednacine:\nx = " << x << endl;
-            return 1;
-        }
-        else
-        {
-            cout << "Jednacina nema resenja!!" << endl;
-            return 0;
-        }
-    }
-    virtual void ispis()
-    {
-        cout << b << "x ";
-        if (c >= 0)
-            cout << "+";
-        cout << c << " = 0" << endl;
-    }
-};
-class Kvadratna : public Linearna
-{
-    int a;
+// public:
+//     Linearna()
+//     {
+//         b = 2;
+//         c = 3;
+//     }
+//     Linearna(float b, float c)
+//     {
+//         this->b = b;
+//         this->c = c;
+//     }
+//     virtual int resenje()
+//     {
+//         float x = (float)-c / b;
+//         if (x)
+//         {
+//             cout << "Resenje linearne jednacine:\nx = " << x << endl;
+//             return 1;
+//         }
+//         else
+//         {
+//             cout << "Jednacina nema resenja!!" << endl;
+//             return 0;
+//         }
+//     }
+//     virtual void ispis()
+//     {
+//         cout << b << "x ";
+//         if (c >= 0)
+//             cout << "+";
+//         cout << c << " = 0" << endl;
+//     }
+// };
+// class Kvadratna : public Linearna
+// {
+//     float a;
 
-public:
-    Kvadratna()
-    {
-        a = 1;
-    }
-    Kvadratna(int a, int b, int c) : Linearna(b, c)
-    {
-        this->a = a;
-    }
-    int resenje()
-    {
-        float x1, x2, D;
-        D = b * b - 4 * a * c;
-        if (D > 0)
-        {
-            x1 = (float)(-b + sqrt(D)) / (2 * a);
-            x2 = (float)(-b - sqrt(D)) / (2 * a);
-            cout << "Resenja kvadratne jednacine:\nx1 = " << x1 << "\nx2 = " << x2 << endl;
-            return 2;
-        }
-        else if (D = 0)
-        {
-            x1 = (float)-b / (2 * a);
-            cout << "Resenje kvadratne jednacine:\nx = " << x1 << endl;
-            return 1;
-        }
-        else
-        {
-            cout << "Jednacina nema realnih resenja." << endl;
-            return 0;
-        }
-    }
-    void ispis()
-    {
-        cout << a << "x^2 ";
-        if (b > 0)
-            cout << "+";
-        cout << b << "x ";
-        if (b > 0)
-            cout << "+";
-        cout << c << " = 0" << endl;
-    }
-};
+// public:
+//     Kvadratna()
+//     {
+//         a = 1;
+//     }
+//     Kvadratna(float a, float b, float c) : Linearna(b, c)
+//     {
+//         this->a = a;
+//     }
+//     int resenje()
+//     {
+//         float x1, x2, D;
+//         D = b * b - 4 * a * c;
+//         if (D > 0)
+//         {
+//             x1 = (float)(-b + sqrt(D)) / (2 * a);
+//             x2 = (float)(-b - sqrt(D)) / (2 * a);
+//             cout << "Resenja kvadratne jednacine:\nx1 = " << x1 << "\nx2 = " << x2 << endl;
+//             return 2;
+//         }
+//         else if (D = 0)
+//         {
+//             x1 = (float)-b / (2 * a);
+//             cout << "Resenje kvadratne jednacine:\nx = " << x1 << endl;
+//             return 1;
+//         }
+//         else
+//         {
+//             cout << "Jednacina nema realnih resenja." << endl;
+//             return 0;
+//         }
+//     }
+//     void ispis()
+//     {
+//         cout << a << "x^2 ";
+//         if (b > 0)
+//             cout << "+";
+//         cout << b << "x ";
+//         if (b > 0)
+//             cout << "+";
+//         cout << c << " = 0" << endl;
+//     }
+// };
 
-int main()
-{
-    Linearna Ljed1(3, -4);
-    Kvadratna Kjed1(1, 7, 6);
-    Ljed1.ispis();
-    Ljed1.resenje();
-    Kjed1.ispis();
-    Kjed1.resenje();
-    return 0;
-}
+// int main()
+// {
+//     Linearna Ljed1(3, -4);
+//     Kvadratna Kjed1(1, 7, 6);
+//     Ljed1.ispis();
+//     Ljed1.resenje();
+//     Kjed1.ispis();
+//     Kjed1.resenje();
+//     return 0;
+// }
+
+// Napraviti program koji ce realizovati klase izraz1 i izraz2.
+// Izraz1 se sastoji od sledecih obelezja:
+// char op1  - promenljiva znakovnog tipa koja obelezava operaciju (+,-,*,/)
+// operand1 - celobrojna promenljiva prvi operand
+// operand2 - celobrojna promenljiva drugi operand
+// Metode konstruktor bez argumenata postavlja operaciju na + a operande na 2 i 5;
+// Konstruktor sa argumentima (operand1, operancd2, operacija1)
+// set i get metode;
+// polimorfna metoda double izracunaj() - racuna rezultat na osnovu operacije (sabiranje, mnozenje, deljenje ili oduzimanje)
+// metoda ispis() - ispisuje operand1 operand2 i operaciju.
+// #include <iostream>
+// using namespace std;
+// class izraz1
+// {
+// protected:
+//     char op1;
+//     int operand1;
+//     int operand2;
+
+// public:
+//     izraz1()
+//     {
+//         op1 = '+';
+//         operand1 = 2;
+//         operand2 = 5;
+//     }
+//     izraz1(int operand1, int operand2, char operacija1)
+//     {
+//         op1 = operacija1;
+//         this->operand1 = operand1;
+//         this->operand2 = operand2;
+//     }
+//     void setop1(char x) { op1 = x; }
+//     void setoperand1(int x) { operand1 = x; }
+//     void setoperand2(int x) { operand2 = x; }
+//     char getop1() { return op1; }
+//     int setoperator1() { return operand1; }
+//     int setoperator2() { return operand2; }
+//     virtual double izracunaj()
+//     {
+//         float rezultat;
+//         switch (op1)
+//         {
+//         case '+':
+//             rezultat = operand1 + operand2;
+//             break;
+//         case '*':
+//             rezultat = operand1 * operand2;
+//             break;
+//         case '-':
+//             rezultat = operand1 - operand2;
+//             break;
+//         case '/':
+//             rezultat = (float)operand1 / operand2;
+//             break;
+//         default:
+//             cout << "GRESKA!!" << endl;
+//         }
+//         return rezultat;
+//     }
+//     void ispis()
+//     {
+//         cout << operand1 << op1 << operand2 << endl;
+//     }
+// };
+// // Klasa izraz2 nasledjuje klasu izraz1 i dodaje jos op2 - operacija 2
+// // i operand3 - celobrojna promenljiva koja predstavlja treci operand.
+// // Metode:Konstruktor bez argumenata (postavlja operande na 2, 5 i 3 a operacija na + i *)
+// // Konstruktor sa argumentima.set i get metode.
+// // polimorfnu metodu double izracunaj() koja racuna rezultat ali sada vodi racuna o prioritetu koja operacija se prva izvodi (* i /) pa tek onda (+ i -);
+// // void ispis() ispisuje obelezja();
+// // Testirate sve metode u glavom programu.
+// int prijoritet(int x)
+// {
+//     if (x == '*' || x == '/')
+//         return 2;
+//     else if (x == '+' || x == '-')
+//         return 1;
+//     else
+//         return 0;
+// }
+// float IZRACUNAJ(char znak, float opr1, float opr2)
+// {
+//     float rezultat;
+//     switch (znak)
+//     {
+//     case '+':
+//         rezultat = opr1 + opr2;
+//         break;
+//     case '*':
+//         rezultat = opr1 * opr2;
+//         break;
+//     case '-':
+//         rezultat = opr1 - opr2;
+//         break;
+//     case '/':
+//         rezultat = (float)opr1 / opr2;
+//         break;
+//     }
+//     return rezultat;
+// }
+// class izraz2 : public izraz1
+// {
+//     char op2;
+//     int operand3;
+
+// public:
+//     izraz2()
+//     {
+//         operand3 = 3;
+//         op2 = '*';
+//     }
+//     izraz2(char op1, char op2, int operand1, int operand2, int operand3) : izraz1(operand1, operand2, op1)
+//     {
+//         this->op2 = op2;
+//         this->operand3 = operand3;
+//     }
+//     void setop2(char x) { op2 = x; }
+//     void setoperand3(int x) { operand3 = x; }
+//     char getop2() { return op2; }
+//     int setoperator3() { return operand3; }
+//     double izracunaj()
+//     {
+//         float rezultat;
+//         if (prijoritet(op1) == 0 || prijoritet(op2) == 0)
+//             cout << "GRESKA!!" << endl;
+//         else if (prijoritet(op1) >= prijoritet(op2))
+//         {
+//             rezultat = izraz1::izracunaj();
+//             rezultat = IZRACUNAJ(op2, rezultat, (float)operand3);
+//         }
+//         else
+//         {
+//             rezultat = IZRACUNAJ(op2, (float)operand2, (float)operand3);
+//             rezultat = IZRACUNAJ(op1, (float)operand1, rezultat);
+//         }
+//         return rezultat;
+//     }
+//     void ispis()
+//     {
+//         cout << operand1 << op1 << operand2 << op2 << operand3 << endl;
+//     }
+// };
+// int main()
+// {
+//     izraz2 izr1('*', '*', 4, 5, 2);
+//     izr1.ispis();
+//     cout << izr1.izracunaj() << endl;
+//     return 0;
+// }
